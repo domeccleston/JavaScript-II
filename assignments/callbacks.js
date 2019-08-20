@@ -38,6 +38,11 @@ const items = ["Pencil", "Notebook", "yo-yo", "Gum"];
   // "this Pencil is worth a million dollars!"
 */
 
+// sample callback
+function myCallBack(value) {
+	return "printing value: " + value;
+}
+
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
   return cb(arr.length);

@@ -77,14 +77,21 @@ console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
+// TODO if time: refactor this to only use reduce()
 let ticketPriceTotal = runners.map(runner => runner.donation).reduce((a, b) => a + b);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1
+// Problem 1: return a sorted array of runners' last names
+// TODO if time: get this to return an array of objects sorted by runners' last names
 
-// Problem 2
+let sortedNames = runners.map(person => person.last_name).sort();
+console.log(sortedNames);
+
+// Problem 2: we're out of 2XL and 3XL t-shirts. Replace these values with "XL".
+
+  
 
 // Problem 3
