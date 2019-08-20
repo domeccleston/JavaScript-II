@@ -90,8 +90,28 @@ console.log(ticketPriceTotal);
 let sortedNames = runners.map(person => person.last_name).sort();
 console.log(sortedNames);
 
-// Problem 2: we're out of 2XL and 3XL t-shirts. Replace these values with "XL".
+// Problem 2: we're out of 2XL and 3XL t-shirts. Replace these values with "XL" and return an altered array of objects.
 
-  
+const smaller = runners.forEach(function(item) {
+	if (item.shirt_size === "3XL" || item.shirt_size === "2XL") {
+		item.shirt_size = "XL";
+	}
+})
 
-// Problem 3
+/*
+Problem 3:
+
+Our 5k fun runs are highly corrupt and arbitrary. 
+Runners' times in minutes will be logged according to the formula:
+
+time =  (100/donation) * 40
+
+Calculate runner's times and return an object with this information populated for each runner.
+*/
+
+let runTime = (donation) => ((100/donation)*40);
+
+let runnersTimes = runners.map(obj=> ({ ...obj, run_time: Math.round(runTime(obj.donation)) + " minutes"
+}));
+
+
