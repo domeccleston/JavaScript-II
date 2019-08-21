@@ -58,28 +58,60 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+
+runners.forEach(runner => fullNames.push(runner.first_name + " " + runner.last_name));
+
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
+let capitalizeFirst = name => name.split(' ')[0].toUpperCase() + " " + name.split(' ')[1];
+
+let firstNamesAllCaps = fullNames.map(name => capitalizeFirst(name));
 console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
-let runnersLargeSizeShirt = [];
+let runnersLargeSizeShirt = runners.filter(runner => runner.shirt_size === "L");
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
-let ticketPriceTotal = 0;
+// TODO if time: refactor this to only use reduce()
+let ticketPriceTotal = runners.map(runner => runner.donation).reduce((a, b) => a + b);
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1
+// Problem 1: return a sorted array of runners' last names
+// TODO if time: get this to return an array of objects sorted by runners' last names
 
-// Problem 2
+let sortedNames = runners.map(person => person.last_name).sort();
+console.log(sortedNames);
 
-// Problem 3
+// Problem 2: we're out of 2XL and 3XL t-shirts. Replace these values with "XL" and return an altered array of objects.
+
+const smaller = runners.forEach(function(item) {
+	if (item.shirt_size === "3XL" || item.shirt_size === "2XL") {
+		item.shirt_size = "XL";
+	}
+})
+
+/*
+Problem 3:
+
+Our 5k fun runs are highly corrupt and arbitrary. 
+Runners' times in minutes will be logged according to the formula:
+
+time =  (100/donation) * 40
+
+Calculate runner's times and return an object with this information populated for each runner.
+*/
+
+let runTime = (donation) => ((100/donation)*40);
+
+let runnersTimes = runners.map(obj=> ({ ...obj, run_time: Math.round(runTime(obj.donation)) + " minutes"
+}));
+
+
